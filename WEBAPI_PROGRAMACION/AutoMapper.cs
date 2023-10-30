@@ -10,6 +10,12 @@ namespace WEBAPI_PROGRAMACION
         {
             CreateMap<LenguajeDTO, Lenguaje>();
             CreateMap<ProgramadorDTO, Programador>();
+
+            CreateMap<SistemaDTO, Sistema>()
+                .ForMember(ent => ent.Lenguajes, dto => dto
+                .MapFrom(campo => campo.Lenguajes.Select(id => new Lenguaje { LenguajeId = id})));
+
+            CreateMap<SistemaProgramadorDTO, SistemaProgramador>();
         }
     }
 }

@@ -1,0 +1,12 @@
+﻿namespace WEBAPI_PROGRAMACION.DTO
+{
+    public class SistemaDTO
+    {
+        public string SistemaName { get; set; }
+
+        public List<int> Lenguajes { get; set; } = new List<int>();
+
+        public List<SistemaProgramadorDTO> SP { get; set; } = new List<SistemaProgramadorDTO>();
+
+    }
+}
