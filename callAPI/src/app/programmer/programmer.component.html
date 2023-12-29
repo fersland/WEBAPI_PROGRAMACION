@@ -1,0 +1,21 @@
+<h1>Programmer works!</h1>
+
+<hr>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let item of programmerList$|async; index as i; first as isFirst">
+            <td>{{ item.programadorId }}</td>
+            <td>{{ item.programadorName }}</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>

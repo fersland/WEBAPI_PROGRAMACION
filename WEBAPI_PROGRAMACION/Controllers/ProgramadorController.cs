@@ -19,6 +19,7 @@ namespace WEBAPI_PROGRAMACION.Controllers
             this.mp = mp;
         }
 
+        // https://localhost:7033/Api/Programacion/Programador/ListarProgramadores
         [HttpGet]
         [Route("ListarProgramadores")]
         public async Task<ActionResult> Listar()
