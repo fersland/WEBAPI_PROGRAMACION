@@ -13,7 +13,8 @@ const routes: Routes = [
   { path: 'edit-lenguaje', component: EditLenguajeComponent },
   { path: 'view-language/:id', component: ViewLanguageComponent },*/
   
-  { path: 'lenguajes', loadChildren: () => import('./lenguajes/lenguajes.module').then(m => m.LenguajesModule) }
+  { path: 'lenguajes', loadChildren: () => import('./lenguajes/lenguajes.module').then(m => m.LenguajesModule) },
+  { path: 'programadores', loadChildren: () => import('./programadores/programadores.module').then(m => m.ProgramadoresModule) }
 ];
 
 @NgModule({
