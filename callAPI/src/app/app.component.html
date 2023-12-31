@@ -1,2 +1,24 @@
 <app-header></app-header>
-<router-outlet></router-outlet>
+
+<div class="container py-3">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">ANGULAR & WEBAPI!</h4>
+                <p>Aplicación que hace uso de los EndPoints desarrollados de la aplicación C# WEBAPI. 
+                <hr>
+                <p class="mb-0">CRUD DE TESTING.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-9">
+            
+            <router-outlet></router-outlet>
+        </div>
+
+        <div class="col-md-3">
+            <app-sidebar></app-sidebar>
+        </div>
+    </div>
+</div>
