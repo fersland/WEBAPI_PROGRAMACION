@@ -3,19 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'; // para el server
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CallComponent } from './call/call.component';
-import { ProgrammerComponent } from './programmer/programmer.component';
+import { SiteFrameworkModule } from './site-framework/site-framework.module';
+import { LenguajesModule } from './lenguajes/lenguajes.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CallComponent,
-    ProgrammerComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SiteFrameworkModule,
+    LenguajesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
