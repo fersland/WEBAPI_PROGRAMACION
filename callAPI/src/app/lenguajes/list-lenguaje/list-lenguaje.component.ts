@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LenguajeService } from '../service/lenguaje.service';
+import { LenguajeService } from '../lenguaje.service';
+import { Lenguajes } from '../lenguajes';
 
 @Component({
   selector: 'app-list-lenguaje',
@@ -11,10 +12,18 @@ import { LenguajeService } from '../service/lenguaje.service';
 export class ListLenguajeComponent implements OnInit {
   lenguajeList$!:Observable<any[]>;
 
+  //lenguajesListado: Lenguajes;
+
   constructor(private lenguajeService:LenguajeService){}
 
   ngOnInit(): void {
     this.lenguajeList$ = this.lenguajeService.getListLenguaje();
+
+    /*
+      this.lenguajeService.getListLenguaje().subscribe(data => {
+      this.lenguajesListado = data;
+    });
+    */
   }
 
   
