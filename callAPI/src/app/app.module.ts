@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { SiteFrameworkModule } from './site-framework/site-framework.module';
 import { LenguajesModule } from './lenguajes/lenguajes.module';
 import { ProgramadoresModule } from './programadores/programadores.module';
-
+import { ProductModule } from './product/product.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { ProgramadoresModule } from './programadores/programadores.module';
     HttpClientModule,
     SiteFrameworkModule,
     LenguajesModule,
-    ProgramadoresModule
+    ProgramadoresModule,
+    ProductModule
   ],
   providers: [],
   bootstrap: [AppComponent]

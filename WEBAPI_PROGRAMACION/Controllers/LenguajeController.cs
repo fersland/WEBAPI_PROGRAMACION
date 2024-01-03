@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using WEBAPI_PROGRAMACION.DTO;
 using WEBAPI_PROGRAMACION.Models;
 
@@ -37,6 +38,17 @@ namespace WEBAPI_PROGRAMACION.Controllers
             var response = await db.Lenguajes.ToListAsync();
             return Ok(response);
         }
+
+        // https://localhost:7033/Api/Programacion/Lenguajes/
+
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult> ViewLenguaje(int id)
+        {
+            var response = await db.Lenguajes.FindAsync(id);
+            return Ok(response);
+        }
+
+        // https://localhost:7033/Api/Programacion/Lenguajes/Save
 
         [HttpGet]
         [Route("ListarLenguajesParametros")]
