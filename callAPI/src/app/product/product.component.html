@@ -1,1 +1,48 @@
-<p>product works!</p>
+<p>Bienvenido a Productos!!</p>
+
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>DESCRIPTION</th>
+                    <th>PRICE</th>
+                    <th>STOCK</th>
+                    <th>AVAILABLE</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of productList$|async; index as i; first as isFirst">
+                    <td><img src="{{ item.imgProduct }}" alt="" width="40"></td>
+                    <td>{{ item.name }} </td>
+                    <td>$ {{ item.price }} </td>
+                    <td>{{ item.stock }}</td>
+                    <td>{{ item.isAvailable }}</td>
+                    <td>
+                        <a href="product/{{ item.id }}" > Show </a>
+                        <a href="edit-product/{{ item.id }}"> Edit </a>
+                        <a href="delete-product/{{ item.id }}"> Delete </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-4 col-md-6 mb-4 mt-4" *ngFor="let item of productList$|async">
+        <div class="card-group" >
+            <div class="card h-100" >
+              <img src="{{ item.imgProduct }}" class="card-img-top" width="40%" >
+            <div class="card-body">
+              <h5 class="card-title">{{ item.name }}</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

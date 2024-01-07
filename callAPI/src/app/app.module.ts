@@ -21,6 +21,7 @@ import { ProductModule } from './product/product.module';
     SiteFrameworkModule,
     LenguajesModule,
     ProgramadoresModule,
+    
     ProductModule
   ],
   providers: [],
