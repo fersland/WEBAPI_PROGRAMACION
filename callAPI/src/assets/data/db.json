@@ -1,0 +1,12 @@
+{
+    "categorias":[
+        {
+            "lenguajeId": 1,
+            "lenguajeName": "PHP"
+        },
+        {
+            "lengaujeId": 2,
+            "lenguajeName": "C SHARP"
+        }
+    ]
+}

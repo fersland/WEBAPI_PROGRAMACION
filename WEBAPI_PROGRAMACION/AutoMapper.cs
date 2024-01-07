@@ -16,6 +16,8 @@ namespace WEBAPI_PROGRAMACION
                 .MapFrom(campo => campo.Lenguajes.Select(id => new Lenguaje { LenguajeId = id})));
 
             CreateMap<SistemaProgramadorDTO, SistemaProgramador>();
+
+            CreateMap<ProductDTO, Product>();
         }
     }
 }

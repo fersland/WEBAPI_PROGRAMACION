@@ -14,10 +14,9 @@ const routes: Routes = [
   { path: 'create-product', component: CreateProductComponent },
   { path: 'delete-product/:id', component: DeleteProductComponent },
   { path: 'edit-product/:id', component: EditProductComponent },
-  { path: 'view-product', component: ViewProductComponent },
-  { path: 'view-all-product-by-category/:category', component: ViewAllProductByCategoryComponent },
-  { path: 'view-all-product-by-date/:date', component: ViewAllProductByDateComponent },
-  { path: 'view-all-product', component: ViewAllProductComponent }
+  { path: 'product/:id', component: ViewProductComponent },
+  { path: 'category/:id', component: ViewAllProductByCategoryComponent },
+  { path: 'search', component: ViewAllProductByDateComponent }
 ];
 
 @NgModule({
