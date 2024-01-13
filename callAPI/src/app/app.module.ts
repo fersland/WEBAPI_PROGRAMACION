@@ -7,6 +7,7 @@ import { SiteFrameworkModule } from './site-framework/site-framework.module';
 import { LenguajesModule } from './lenguajes/lenguajes.module';
 import { ProgramadoresModule } from './programadores/programadores.module';
 import { ProductModule } from './product/product.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { ProductModule } from './product/product.module';
     SiteFrameworkModule,
     LenguajesModule,
     ProgramadoresModule,
-    
+    FormsModule,
     ProductModule
   ],
   providers: [],
