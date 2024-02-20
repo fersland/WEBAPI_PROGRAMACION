@@ -14,6 +14,7 @@ namespace WEBAPI_PROGRAMACION
         public DbSet<SistemaProgramador> SP => Set<SistemaProgramador>();
         public DbSet<Product> Products => Set<Product>();
         public DbSet<Category> Categories => Set<Category>();
+        public DbSet<Estado> Estados => Set<Estado>();
 
 
         protected override void OnModelCreating(ModelBuilder model)
@@ -26,6 +27,14 @@ namespace WEBAPI_PROGRAMACION
                 .HasOne(p => p.Category)
                 .WithMany(c => c.Products)
                 .HasForeignKey(p => p.CategoryId);
+            model.Entity<Product>().HasKey(p => p.Id);
+            model.Entity<Product>().Property(p => p.Name).HasMaxLength(120).IsRequired();
+            model.Entity<Product>().Property(p => p.price).HasPrecision(18, 2).IsRequired();
+            model.Entity<Product>().Property(p => p.stock).IsRequired();
+            model.Entity<Product>().Property(p => p.ImgProduct).HasMaxLength(250);
+            model.Entity<Product>().Property(p => p.Color).HasMaxLength(255);
+            model.Entity<Product>().Property(p => p.IsAvailable).IsRequired();
+            model.Entity<Product>().Property(p => p.CategoryId).IsRequired();
 
             //model.Entity<SistemaProgramador>().HasKey(sp => new {sp.SistemaId, sp.ProgramadorId});
             //model.Entity<SistemaProgramador>().Property(sp => sp.Desarrollador).HasMaxLength(100);

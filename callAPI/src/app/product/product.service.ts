@@ -29,7 +29,7 @@ export class ProductService {
     return this.http.get<any>(this.apiCategorias);
   }
 
-  viewProductId(productId): Observable<Product>{
+  viewProductId(productId:number){
     const urlProductoId = 'https://localhost:7033/api/product/selectProduct/' + productId;
     return this.http.get<Product>(urlProductoId);
   }
