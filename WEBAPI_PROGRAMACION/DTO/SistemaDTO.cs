@@ -2,7 +2,7 @@
 {
     public class SistemaDTO
     {
-        public string SistemaName { get; set; }
+        public string SistemaName { get; set; } = string.Empty;
 
         public List<int> Lenguajes { get; set; } = new List<int>();
 

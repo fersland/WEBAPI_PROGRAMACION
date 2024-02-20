@@ -33,7 +33,7 @@ namespace WEBAPI_PROGRAMACION.Migrations
 
                     b.HasIndex("SistemasSistemaId");
 
-                    b.ToTable("LenguajeSistema");
+                    b.ToTable("LenguajeSistema", (string)null);
                 });
 
             modelBuilder.Entity("WEBAPI_PROGRAMACION.Models.Category", b =>
@@ -44,6 +44,9 @@ namespace WEBAPI_PROGRAMACION.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("EstadoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(120)
@@ -51,7 +54,27 @@ namespace WEBAPI_PROGRAMACION.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.HasIndex("EstadoId");
+
+                    b.ToTable("Categories", (string)null);
+                });
+
+            modelBuilder.Entity("WEBAPI_PROGRAMACION.Models.Estado", b =>
+                {
+                    b.Property<int>("EstadoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EstadoId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.HasKey("EstadoId");
+
+                    b.ToTable("Estados", (string)null);
                 });
 
             modelBuilder.Entity("WEBAPI_PROGRAMACION.Models.Lenguaje", b =>
@@ -62,6 +85,9 @@ namespace WEBAPI_PROGRAMACION.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LenguajeId"));
 
+                    b.Property<int>("EstadoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("LenguajeName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -69,7 +95,9 @@ namespace WEBAPI_PROGRAMACION.Migrations
 
                     b.HasKey("LenguajeId");
 
-                    b.ToTable("Lenguajes");
+                    b.HasIndex("EstadoId");
+
+                    b.ToTable("Lenguajes", (string)null);
                 });
 
             modelBuilder.Entity("WEBAPI_PROGRAMACION.Models.Product", b =>
@@ -85,23 +113,30 @@ namespace WEBAPI_PROGRAMACION.Migrations
 
                     b.Property<string>("Color")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("EstadoId")
+                        .HasColumnType("int");
 
                     b.Property<string>("ImgProduct")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
 
                     b.Property<int>("Reviews")
                         .HasColumnType("int");
 
                     b.Property<decimal>("price")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("stock")
@@ -111,7 +146,9 @@ namespace WEBAPI_PROGRAMACION.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.HasIndex("EstadoId");
+
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("WEBAPI_PROGRAMACION.Models.Programador", b =>
@@ -122,6 +159,9 @@ namespace WEBAPI_PROGRAMACION.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProgramadorId"));
 
+                    b.Property<int>("EstadoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ProgramadorName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -129,7 +169,9 @@ namespace WEBAPI_PROGRAMACION.Migrations
 
                     b.HasKey("ProgramadorId");
 
-                    b.ToTable("Programadores");
+                    b.HasIndex("EstadoId");
+
+                    b.ToTable("Programadores", (string)null);
                 });
 
             modelBuilder.Entity("WEBAPI_PROGRAMACION.Models.Sistema", b =>
@@ -140,6 +182,9 @@ namespace WEBAPI_PROGRAMACION.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SistemaId"));
 
+                    b.Property<int>("EstadoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("SistemaName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -147,7 +192,9 @@ namespace WEBAPI_PROGRAMACION.Migrations
 
                     b.HasKey("SistemaId");
 
-                    b.ToTable("Sistemas");
+                    b.HasIndex("EstadoId");
+
+                    b.ToTable("Sistemas", (string)null);
                 });
 
             modelBuilder.Entity("WEBAPI_PROGRAMACION.Models.SistemaProgramador", b =>
@@ -167,7 +214,7 @@ namespace WEBAPI_PROGRAMACION.Migrations
 
                     b.HasIndex("ProgramadorId");
 
-                    b.ToTable("SP");
+                    b.ToTable("SP", (string)null);
                 });
 
             modelBuilder.Entity("LenguajeSistema", b =>
@@ -185,6 +232,28 @@ namespace WEBAPI_PROGRAMACION.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("WEBAPI_PROGRAMACION.Models.Category", b =>
+                {
+                    b.HasOne("WEBAPI_PROGRAMACION.Models.Estado", "Estado")
+                        .WithMany()
+                        .HasForeignKey("EstadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Estado");
+                });
+
+            modelBuilder.Entity("WEBAPI_PROGRAMACION.Models.Lenguaje", b =>
+                {
+                    b.HasOne("WEBAPI_PROGRAMACION.Models.Estado", "Estado")
+                        .WithMany("Lenguaje")
+                        .HasForeignKey("EstadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Estado");
+                });
+
             modelBuilder.Entity("WEBAPI_PROGRAMACION.Models.Product", b =>
                 {
                     b.HasOne("WEBAPI_PROGRAMACION.Models.Category", "Category")
@@ -193,7 +262,37 @@ namespace WEBAPI_PROGRAMACION.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("WEBAPI_PROGRAMACION.Models.Estado", "Estado")
+                        .WithMany()
+                        .HasForeignKey("EstadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Category");
+
+                    b.Navigation("Estado");
+                });
+
+            modelBuilder.Entity("WEBAPI_PROGRAMACION.Models.Programador", b =>
+                {
+                    b.HasOne("WEBAPI_PROGRAMACION.Models.Estado", "Estado")
+                        .WithMany()
+                        .HasForeignKey("EstadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Estado");
+                });
+
+            modelBuilder.Entity("WEBAPI_PROGRAMACION.Models.Sistema", b =>
+                {
+                    b.HasOne("WEBAPI_PROGRAMACION.Models.Estado", "Estado")
+                        .WithMany("Sistema")
+                        .HasForeignKey("EstadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Estado");
                 });
 
             modelBuilder.Entity("WEBAPI_PROGRAMACION.Models.SistemaProgramador", b =>
@@ -218,6 +317,13 @@ namespace WEBAPI_PROGRAMACION.Migrations
             modelBuilder.Entity("WEBAPI_PROGRAMACION.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("WEBAPI_PROGRAMACION.Models.Estado", b =>
+                {
+                    b.Navigation("Lenguaje");
+
+                    b.Navigation("Sistema");
                 });
 
             modelBuilder.Entity("WEBAPI_PROGRAMACION.Models.Programador", b =>

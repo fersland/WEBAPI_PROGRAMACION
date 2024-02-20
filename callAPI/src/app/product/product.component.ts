@@ -12,6 +12,10 @@ export class ProductComponent {
   productList$!:Observable<any[]>;
   productId = 0;
 
+  onImgError(event) { 
+    event.target.src = './assets/images/notimage.jpg';
+}
+
   constructor(private productService:ProductService,
               private activatedRouted:ActivatedRoute){}
 
